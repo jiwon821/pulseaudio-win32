@@ -90,7 +90,7 @@ ARG PAW32_VERSION=unknown
 RUN git -C /src/pulseaudio describe --always --tags | \
     sed -e "s/^v//g" -e "s/$/-paw32-${PAW32_VERSION}/g" | \
     tee /src/pulseaudio/.tarball-version /src/pulseaudio/.version /pulseaudio.version
-RUN CFLAGS="-Wno-incompatible-pointer-types" meson setup \
+RUN meson setup \
         --cross-file mingw32 \
         -Dtests=false \
         -Ddatabase=simple \
@@ -103,7 +103,7 @@ RUN CFLAGS="-Wno-incompatible-pointer-types" meson setup \
         # _WIN32_WINNT=_WIN32_WINNT_WIN7
         -Dc_args="-D__USE_MINGW_ANSI_STDIO=1 -D_WIN32_WINNT=0x0601" \
         /build/pulseaudio /src/pulseaudio
-RUN ninja -C /build/pulseaudio
+RUN CFLAGS="-Wno-incompatible-pointer-types" ninja -C /build/pulseaudio
 RUN meson install -C /build/pulseaudio
 RUN find /pulseaudio \
         # static libraries
