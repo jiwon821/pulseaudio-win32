@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Build
@@ -18,17 +18,17 @@ jobs:
           tar -xOf - --wildcards '*/layer.tar' |
           tar -xvf - -C ./build
       - name: Upload (pasetup.exe)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: Installer (pasetup.exe)
           path: build/pasetup.exe
       - name: Upload (pulseaudio.zip)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: Binaries (pulseaudio.zip)
           path: build/pulseaudio.zip
       - name: Upload (pasvc.zip)
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v7
         with:
           name: Binaries (pasvc.zip)
           path: build/pasvc.zip
