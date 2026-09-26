@@ -90,7 +90,7 @@ ARG PAW32_VERSION=unknown
 RUN git -C /src/pulseaudio describe --always --tags | \
     sed -e "s/^v//g" -e "s/$/-paw32-${PAW32_VERSION}/g" | \
     tee /src/pulseaudio/.tarball-version /src/pulseaudio/.version /pulseaudio.version
-RUN meson setup \
+RUN CFLAGS="-Wno-incompatible-pointer-types" meson setup \
         --cross-file mingw32 \
         -Dtests=false \
         -Ddatabase=simple \
