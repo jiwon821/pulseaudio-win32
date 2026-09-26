@@ -46,7 +46,7 @@ COPY --from=reshack-install ${WINEPREFIX} ${WINEPREFIX}
 
 FROM wine AS inno-install
 RUN apk add --no-cache innoextract
-RUN wget -qO /tmp/is.exe http://files.jrsoftware.org/is/6/innosetup-6.1.2.exe
+RUN wget -qO /tmp/is.exe https://github.com/jrsoftware/issrc/releases/download/is-6_1_2/innosetup-6.1.2.exe
 RUN mkdir /opt/inno-setup && \
     innoextract --output-dir /opt/inno-setup --exclude-temp /tmp/is.exe
 
