@@ -4,7 +4,7 @@ index 41ad1d6f9..f94fe605a 100644
 +++ b/src/modules/module-waveout.c
 @@ -678,12 +678,12 @@ int pa__init(pa_module *m) {
      u = pa_xmalloc(sizeof(struct userdata));
-
+ 
      if (record) {
 -        result = waveInOpen(&hwi, input_device, &wf, 0, 0, WAVE_FORMAT_DIRECT | WAVE_FORMAT_QUERY);
 +        result = waveInOpen(&hwi, input_device, (LPCWAVEFORMATEX)&wf, 0, 0, WAVE_FORMAT_DIRECT | WAVE_FORMAT_QUERY);
@@ -19,7 +19,7 @@ index 41ad1d6f9..f94fe605a 100644
              pa_log("Failed to open WaveIn.");
 @@ -698,12 +698,12 @@ int pa__init(pa_module *m) {
      }
-
+ 
      if (playback) {
 -        result = waveOutOpen(&hwo, output_device, &wf, 0, 0, WAVE_FORMAT_DIRECT | WAVE_FORMAT_QUERY);
 +        result = waveOutOpen(&hwo, output_device, (LPCWAVEFORMATEX)&wf, 0, 0, WAVE_FORMAT_DIRECT | WAVE_FORMAT_QUERY);
